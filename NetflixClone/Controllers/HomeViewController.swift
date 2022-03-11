@@ -26,10 +26,13 @@ class HomeViewController: UIViewController {
         homeFeedTableView.dataSource = self
         
         configureNavBar()
+        
        
         // tableview ust tarafindan verilen deger kadar bosluk birakir. Oraya olusturdugumuz HeroHeaderUIView ekleyecegiz
         let headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTableView.tableHeaderView = headerView
+        
+        getTrendingMovies()
     }
     
     private func configureNavBar(){
@@ -47,6 +50,17 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTableView.frame = view.bounds
+    }
+    
+    private func getTrendingMovies(){
+        ApiCaller.shared.getTrandingMovies { results in
+            switch results{
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
