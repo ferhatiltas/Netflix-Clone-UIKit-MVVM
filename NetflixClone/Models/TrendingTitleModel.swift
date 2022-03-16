@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrendingMoviesModel: Codable {
+struct TrendingTitleModel: Codable {
     let results: [Title]
 }
 

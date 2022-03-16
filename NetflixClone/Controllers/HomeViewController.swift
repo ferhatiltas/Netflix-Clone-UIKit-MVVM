@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    let sectionTitles : [String] = ["Trending Movies","Popular","Tranding TV","Upcoming Movies","Top Rated"]
+    let sectionTitles : [String] = ["Trending Movies","Tranding TV","Popular","Upcoming Movies","Top Rated"]
     private let homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped  ) // tableview ust tarafinda bosluk birakir
         tableView.register(CollectionTableViewCell.self, forCellReuseIdentifier:CollectionTableViewCell.identifier)
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTableView.tableHeaderView = headerView
         
-        getTrendingMovies()
+        fetchData()
     }
     
     private func configureNavBar(){
@@ -52,14 +52,29 @@ class HomeViewController: UIViewController {
         homeFeedTableView.frame = view.bounds
     }
     
-    private func getTrendingMovies(){
-        ApiCaller.shared.getTrandingMovies { results in
-            switch results{
-            case .success(let movies):
-                print(movies)
-            case .failure(let error):
-                print(error)
-            }
+    private func fetchData(){
+//        ApiCaller.shared.getTrandingMovies { results in
+//            switch results{
+//            case .success(let movies):
+//                print(movies)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//        ApiCaller.shared.getTrandingTv { results in
+//
+//        }
+//
+//        ApiCaller.shared.getUpcomingMovies { results in
+//
+//        }
+        
+//        ApiCaller.shared.getPopuler { results in
+//
+//        }
+        
+        ApiCaller.shared.getTopRated { results in
+            
         }
     }
 }
@@ -100,6 +115,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource{
         header.textLabel?.font = .systemFont(ofSize: 18, weight:.semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
