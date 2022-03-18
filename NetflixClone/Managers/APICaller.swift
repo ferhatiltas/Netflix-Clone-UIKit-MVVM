@@ -44,7 +44,7 @@ class ApiCaller {
             
             do{
                 let results = try JSONDecoder().decode(TrendingTitleModel.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }
             catch{
                 completion(.failure(error))
@@ -60,7 +60,7 @@ class ApiCaller {
             }
             do {
                 let results = try JSONDecoder().decode(TrendingTitleModel.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }catch {
                 completion(.failure(error))
             }
@@ -77,7 +77,7 @@ class ApiCaller {
             
             do{
                 let results = try JSONDecoder().decode(TrendingTitleModel.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }catch{
                 completion(.failure(error))
             }
@@ -95,7 +95,7 @@ class ApiCaller {
             }
             do {
                 let results = try JSONDecoder().decode(TrendingTitleModel .self, from: data)
-                print(results)
+                completion(.success(results.results))
             }catch{
                 completion(.failure(error))
             }
