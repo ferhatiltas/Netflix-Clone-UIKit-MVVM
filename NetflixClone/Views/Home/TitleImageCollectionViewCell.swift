@@ -7,9 +7,10 @@
 
 import UIKit
 import SDWebImage
-class TitleCollectionViewCell: UICollectionViewCell {
+class TitleImageCollectionViewCell: UICollectionViewCell {
+    // Buraya tableview icindeki her bir collectionda olmasi gereken resimleri ekleuecegi bu resimleri api den cektik
 
-    static let identifier = "TitleCollectionViewCell"
+    static let identifier = "TitleImageCollectionViewCell"
     
     private let posterImageView : UIImageView = {
         let imageView = UIImageView()

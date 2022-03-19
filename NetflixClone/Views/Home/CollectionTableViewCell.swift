@@ -18,7 +18,7 @@ class CollectionTableViewCell: UITableViewCell {
         
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
+        collectionView.register(TitleImageCollectionViewCell.self, forCellWithReuseIdentifier: TitleImageCollectionViewCell.identifier)
         return collectionView
     }()
     
@@ -51,7 +51,7 @@ class CollectionTableViewCell: UITableViewCell {
 extension CollectionTableViewCell : UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath)  as? TitleCollectionViewCell else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleImageCollectionViewCell.identifier, for: indexPath)  as? TitleImageCollectionViewCell else {return UICollectionViewCell()}
         guard let model = titles[indexPath.row].poster_path else {
             return UICollectionViewCell()
         }
