@@ -26,6 +26,9 @@
 		65B12EA127DF221400C380A4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B12EA027DF221400C380A4 /* Extensions.swift */; };
 		65B23E6027E5E46000182B05 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B23E5F27E5E46000182B05 /* TitleTableViewCell.swift */; };
 		65B23E6227E5FCE100182B05 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B23E6127E5FCE100182B05 /* TitleViewModel.swift */; };
+		65BB874227E8FABA0066DAB0 /* YoutubeSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB874127E8FABA0066DAB0 /* YoutubeSearchModel.swift */; };
+		65BB874627E90A0C0066DAB0 /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB874527E90A0C0066DAB0 /* TitlePreviewViewController.swift */; };
+		65BB874827E916990066DAB0 /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB874727E916990066DAB0 /* TitlePreviewViewModel.swift */; };
 		65CB44FF27E87ACA00B3BD99 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CB44FE27E87ACA00B3BD99 /* SearchResultViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,9 @@
 		65B12EA027DF221400C380A4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		65B23E5F27E5E46000182B05 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		65B23E6127E5FCE100182B05 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleViewModel.swift; path = NetflixClone/Views/Upcoming/TitleViewModel.swift; sourceTree = SOURCE_ROOT; };
+		65BB874127E8FABA0066DAB0 /* YoutubeSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchModel.swift; sourceTree = "<group>"; };
+		65BB874527E90A0C0066DAB0 /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		65BB874727E916990066DAB0 /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitlePreviewViewModel.swift; path = NetflixClone/Controllers/General/TitlePreviewViewModel.swift; sourceTree = SOURCE_ROOT; };
 		65CB44FE27E87ACA00B3BD99 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				65B23E6127E5FCE100182B05 /* TitleViewModel.swift */,
+				65BB874727E916990066DAB0 /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -138,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				6541A03C27DB83F200BC1A33 /* TrendingTitleModel.swift */,
+				65BB874127E8FABA0066DAB0 /* YoutubeSearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				65CB44FE27E87ACA00B3BD99 /* SearchResultViewController.swift */,
+				65BB874527E90A0C0066DAB0 /* TitlePreviewViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -285,8 +294,11 @@
 				6599230A27D771CE00392501 /* SceneDelegate.swift in Sources */,
 				6599232027D7761C00392501 /* UpcomingViewController.swift in Sources */,
 				6599231E27D775BA00392501 /* HomeViewController.swift in Sources */,
+				65BB874827E916990066DAB0 /* TitlePreviewViewModel.swift in Sources */,
 				6599232B27D77F1E00392501 /* CollectionTableViewCell.swift in Sources */,
+				65BB874627E90A0C0066DAB0 /* TitlePreviewViewController.swift in Sources */,
 				65CB44FF27E87ACA00B3BD99 /* SearchResultViewController.swift in Sources */,
+				65BB874227E8FABA0066DAB0 /* YoutubeSearchModel.swift in Sources */,
 				65B23E6227E5FCE100182B05 /* TitleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

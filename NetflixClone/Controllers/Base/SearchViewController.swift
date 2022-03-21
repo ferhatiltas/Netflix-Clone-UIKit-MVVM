@@ -53,7 +53,6 @@ class SearchViewController: UIViewController {
             switch result {
             case .success(let titles):
                 self?.titles = titles
-                print(titles)
                 DispatchQueue.main.async {
                     self?.discoveryTable.reloadData()
                 }

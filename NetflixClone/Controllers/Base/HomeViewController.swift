@@ -76,6 +76,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource{
         guard let cell =  tableView.dequeueReusableCell(withIdentifier: CollectionTableViewCell.identifier, for: indexPath) as? CollectionTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         switch indexPath.section{
         case Sections.TrendingMovies.rawValue:
             ApiCaller.shared.getTrandingMovies { result in
@@ -163,3 +164,17 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource{
     }
 }
 
+extension HomeViewController : CollectionTableViewCellDelegate{
+    func collectionViewTableCellDidTapCell(_ cell: CollectionTableViewCell, viewModel: TitlePreviewViewModel) {
+         // tiklama islemi burada gerceklesiyor veriler diger sayfaya burada aktariliyor
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewViewController()
+            print(viewModel)
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+
+    }
+    
+    
+}
