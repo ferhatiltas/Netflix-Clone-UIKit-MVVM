@@ -16,6 +16,8 @@ enum Sections : Int{
 }
 
 class HomeViewController: UIViewController {
+    private var randomTrendingMovie : Title?
+    private var headerView : HeroHeaderUIView?
     let sectionTitles : [String] = ["Trending Movies","Tranding TV","Popular","Upcoming Movies","Top Rated"]
     private let homeFeedTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped  ) // tableview ust tarafinda bosluk birakir
@@ -37,9 +39,23 @@ class HomeViewController: UIViewController {
         
        
         // tableview ust tarafindan verilen deger kadar bosluk birakir. Oraya olusturdugumuz HeroHeaderUIView ekleyecegiz
-        let headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        headerView = HeroHeaderUIView(frame:CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTableView.tableHeaderView = headerView
-        
+        configureHeroHeaderView()
+    }
+    
+    private func configureHeroHeaderView(){
+        ApiCaller.shared.getTrandingMovies { [weak self] result in
+            switch result{
+            case .success(let titles):
+                let selectedTitle = titles.randomElement()
+                self?.randomTrendingMovie = selectedTitle
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.original_title ?? "", posterURL: selectedTitle?.poster_path ?? ""))
+                 
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func configureNavBar(){

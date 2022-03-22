@@ -14,7 +14,7 @@ class UpcomingViewController: UIViewController {
         table.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -47,7 +47,7 @@ class UpcomingViewController: UIViewController {
         }
     }
     
-
+    
 }
 
 extension UpcomingViewController : UITableViewDataSource, UITableViewDelegate{
@@ -65,4 +65,22 @@ extension UpcomingViewController : UITableViewDataSource, UITableViewDelegate{
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let title = titles[indexPath.row]
+        guard let titleName = title.original_title ?? title.original_name else {return}
+        ApiCaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                    self?.navigationController?.pushViewController(vc, animated: true) // herhangi bir satira tikladiginda detay sayfasina gidecel
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
+

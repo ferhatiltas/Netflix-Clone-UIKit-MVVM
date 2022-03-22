@@ -53,6 +53,10 @@ class CollectionTableViewCell: UITableViewCell {
             self?.collectionView.reloadData()
         }
     }
+    
+    private func downloadTitleAt(indexPath : IndexPath){
+        
+    }
 }
 
 extension CollectionTableViewCell : UICollectionViewDelegate,UICollectionViewDataSource{
@@ -95,6 +99,18 @@ extension CollectionTableViewCell : UICollectionViewDelegate,UICollectionViewDat
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        // ilgili movide basili tutuldugunda animasyonla birlikte download butonu cikacak
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+            let downloadAction = UIAction(title: "Download", subtitle: self?.titles[indexPath.row].overview ?? "", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off){
+                _ in
+                self?.downloadTitleAt(indexPath : indexPath)
+            }
+            return UIMenu(title: self?.titles[indexPath.row].original_name ?? self?.titles[indexPath.row].original_title ?? "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
+        }
+        return config
+    }
     
     
 }

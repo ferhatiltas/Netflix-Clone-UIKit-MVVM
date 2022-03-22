@@ -82,15 +82,34 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let title = titles[indexPath.row]
+        guard let titleName = title.original_title ?? title.original_name else {return}
+        ApiCaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                    self?.navigationController?.pushViewController(vc, animated: true) // herhangi bir satira tikladiginda detay sayfasina gidecel
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
-extension SearchViewController : UISearchResultsUpdating{
+extension SearchViewController : UISearchResultsUpdating,SearchResultViewControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
         guard let query = searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty, query.trimmingCharacters(in: .whitespaces).count >= 3, let resultsController = searchController.searchResultsController as? SearchResultViewController else {
             return
         }
+        
+        resultsController.delegate = self
         
         ApiCaller.shared.search(with: query) { result in
             DispatchQueue.main.async {
@@ -102,6 +121,13 @@ extension SearchViewController : UISearchResultsUpdating{
                     print(error.localizedDescription)
                 }
             }
+        }
+    }
+    func searchResultViewController(_ viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async {
+            let vc = TitlePreviewViewController()
+            vc.configure(with: viewModel)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
