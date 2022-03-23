@@ -8,7 +8,10 @@
 import Foundation
 
 struct Constants{
-
+    static let API_KEY = ""
+    static let YoutubeAPI_KEY = ""
+    static let BASE_URL = "https://api.themoviedb.org"
+    static let YoutubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
 enum ApiError : Error{
